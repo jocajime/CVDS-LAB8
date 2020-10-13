@@ -9,10 +9,34 @@ import java.util.List;
 
 public interface ServiciosAlquiler {
 
-    public abstract int valorMultaRetrasoxDia(int itemId);
-
+    //Cliente
     public abstract Cliente consultarCliente(long docu) throws ExcepcionServiciosAlquiler;
 
+    public abstract List<Cliente> consultarClientes() throws ExcepcionServiciosAlquiler;
+
+    public abstract void registrarCliente(Cliente p) throws ExcepcionServiciosAlquiler;
+
+    //Item
+    /**
+     * @obj consultar los items que estan disponibles para alquiler
+     * @return el listado de items disponibles
+     */
+    public abstract List<Item> consultarItemsDisponibles() throws ExcepcionServiciosAlquiler;
+
+    public abstract Item consultarItem(int id) throws ExcepcionServiciosAlquiler;
+
+    public abstract void registrarItem(Item i) throws ExcepcionServiciosAlquiler;
+
+
+
+
+    //TipoItem
+    public abstract List<TipoItem> consultarTiposItem() throws ExcepcionServiciosAlquiler;
+
+    public abstract void registrarTiposItem(TipoItem ti) throws ExcepcionServiciosAlquiler;
+
+    public TipoItem consultarTipoItem(int id) throws ExcepcionServiciosAlquiler;
+    //ItemRentado
     /**
      * @obj Consultar los items que tenga en su poder un cliente
      * @param idcliente identificador del cliente
@@ -22,15 +46,7 @@ public interface ServiciosAlquiler {
      */
     public abstract List<ItemRentado> consultarItemsCliente(long idcliente) throws ExcepcionServiciosAlquiler;
 
-    public abstract List<Cliente> consultarClientes() throws ExcepcionServiciosAlquiler;
-
-    public abstract Item consultarItem(int id) throws ExcepcionServiciosAlquiler;
-
-    /**
-     * @obj consultar los items que estan disponibles para alquiler
-     * @return el listado de items disponibles
-     */
-    public abstract List<Item> consultarItemsDisponibles();
+    public abstract int valorMultaRetrasoxDia(int itemId);
 
     /**
      * @obj consultar el valor de la multa del alquiler, dado el id del item
@@ -43,10 +59,6 @@ public interface ServiciosAlquiler {
      * actualmente alquilado
      */
     public abstract long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler;
-
-    public abstract TipoItem consultarTipoItem(int id) throws ExcepcionServiciosAlquiler;
-
-    public abstract List<TipoItem> consultarTiposItem() throws ExcepcionServiciosAlquiler;
 
     /**
      * @obj rejistrar el alkiler de un item
@@ -62,7 +74,7 @@ public interface ServiciosAlquiler {
      */
     public abstract void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler;
 
-    public abstract void registrarCliente(Cliente p) throws ExcepcionServiciosAlquiler;
+
 
     /**
      * @obj consultar el costo del alquiler de un item
@@ -76,8 +88,6 @@ public interface ServiciosAlquiler {
     public abstract long consultarCostoAlquiler(int iditem, int numdias) throws ExcepcionServiciosAlquiler;
 
     public abstract void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServiciosAlquiler;
-
-    public abstract void registrarItem(Item i) throws ExcepcionServiciosAlquiler;
 
     public abstract void vetarCliente(long docu, boolean estado) throws ExcepcionServiciosAlquiler;
 

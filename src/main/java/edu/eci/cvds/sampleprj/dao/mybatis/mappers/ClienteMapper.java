@@ -38,5 +38,5 @@ public interface ClienteMapper {
                          @Param("telefono") String telefono,
                          @Param("direccion") String direccion,
                          @Param("email") String email,
-                         @Param("vetado") int vetado);
+                         @Param("vetado") boolean vetado);
 }

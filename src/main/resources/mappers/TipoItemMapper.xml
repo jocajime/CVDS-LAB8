@@ -9,7 +9,15 @@
 		<result property='descripcion' column='descripcion'/>  
 	</resultMap>
 
-	<select parameterType="map" id="consultarTipoItem" resultMap="TipoItemMapper">
+	<select parameterType="map" id="consultarTipoItem" resultMap="TipoItemResult">
+		SELECT
+		ti.id as id,
+		ti.descripcion as descripcion
+		FROM VI_TIPOITEM as ti
+		WHERE ti.id = #{id};
+	</select>
+
+	<select parameterType="map" id="consultarTiposItem" resultMap="TipoItemResult">
 		SELECT
 		ti.id as id,
 		ti.descripcion as descripcion

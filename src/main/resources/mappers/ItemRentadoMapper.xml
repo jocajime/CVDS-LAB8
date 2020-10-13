@@ -38,6 +38,19 @@
 		inner join VI_ITEMS as i on ITEMS_id = i.id;
 	</select>
 
+	<select id="consultarItemsRentadosCliente" parameterType="map" resultMap="ItemRentadoResult">
+		select
+		c.documento as c_documento,
+		i.id as i_id,
+		ir.id as id ,
+		ir.fechainiciorenta as fechainiciorenta ,
+		ir.fechafinrenta as fechainiciorenta
+		FROM VI_ITEMRENTADO as ir
+		inner join VI_CLIENTES as c on c.documento = CLIENTES_DOCUMENTO
+		inner join VI_ITEMS as i on ITEMS_id = i.id
+		WHERE c.documento = #{idcliente};
+	</select>
+
 	<insert parameterType="map" id="insertarItemRentado">
 		INSERT into VI_ITEMRENTADO (id,CLIENTES_documento,ITEMS_id,fechainiciorenta,fechafinrenta)
 		values (#{id},#{cliente},#{items},#{fechainicio},#{fechafin});

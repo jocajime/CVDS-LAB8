@@ -9,6 +9,8 @@ import edu.eci.cvds.samples.entities.Item;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.cvds.samples.entities.TipoItem;
 import java.sql.SQLException;
+import java.util.Date;
+import java.util.List;
 
 public class MyBatisItemDAO implements ItemDAO{
 
@@ -16,23 +18,42 @@ public class MyBatisItemDAO implements ItemDAO{
     private ItemMapper itemMapper;
 
     @Override
-    public void save(Item it) throws PersistenceException{
+    public void insertarItem(int id, String nombre, String descripcion, Date fechalanzamiento, int tarifaxdia, String formatorenta, String genero, int tipoitem) throws PersistenceException{
         try{
-            itemMapper.insertarItem(it);
+            itemMapper.insertarItem(id,nombre,descripcion,fechalanzamiento,tarifaxdia,formatorenta,genero,tipoitem);
         }
         catch(org.apache.ibatis.exceptions.PersistenceException e){
-            throw new PersistenceException("Error al registrar el item "+it.toString(),e);
+            throw new PersistenceException("Error al registrar el item ",e);
         }
-
     }
 
     @Override
-    public Item load(int id) throws PersistenceException {
+    public Item consultarItem(int id) throws PersistenceException {
         try{
             return itemMapper.consultarItem(id);
         }
         catch(org.apache.ibatis.exceptions.PersistenceException e){
             throw new PersistenceException("Error al consultar el item "+id,e);
+        }
+    }
+
+    @Override
+    public List<Item> consultarItems() throws PersistenceException {
+        try{
+            return itemMapper.consultarItems();
+        }
+        catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al consultar items ",e);
+        }
+    }
+
+    @Override
+    public List<Item> consultarItemsDisponibles() throws PersistenceException {
+        try{
+            return itemMapper.consultarItemsDisponibles();
+        }
+        catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al consultar items ",e);
         }
 
 

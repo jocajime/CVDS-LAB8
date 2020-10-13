@@ -64,19 +64,6 @@ public class MyBatisExample {
 
         SqlSession sqlss = sessionfact.openSession();
 
-
-        // ClienteMapper
-        ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
-        // CONSULTAR EL CLIENTE CON EL ID
-        System.out.println("*******consultarCliente*******");
-        System.out.println(cm.consultarCliente(703));
-        // CONSULTAR TODOS LOS CLIENTES
-        System.out.println("*******consultarClientes******");
-        System.out.println(cm.consultarClientes());
-        // AGREGAR ITEM RENTADO A CLIENTE
-        System.out.println("*agregarItemRentadoACliente***");
-        //cm.agregarItemRentadoACliente(703, 5, new Date(2020,9,30), new Date(2020,10,3));
-
         //ItemMapper
         ItemMapper it = sqlss.getMapper(ItemMapper.class);
         //CONSULTAR ITEM POR SU ID
@@ -85,6 +72,20 @@ public class MyBatisExample {
         //CONSULTAR TODOS LOS ITEMS
         System.out.println("*******consultarItems**********");
         System.out.println(it.consultarItems());
+
+        // ClienteMapper
+        ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
+        // CONSULTAR TODOS LOS CLIENTES
+        System.out.println("*******consultarClientes******");
+        System.out.println(cm.consultarClientes());
+        // CONSULTAR EL CLIENTE CON EL ID
+        System.out.println("*******consultarCliente*******");
+        System.out.println(cm.consultarCliente(1));
+        // AGREGAR ITEM RENTADO A CLIENTE
+        System.out.println("*agregarItemRentadoACliente***");
+        //cm.agregarItemRentadoACliente(703, 5, new Date(2020,9,30), new Date(2020,10,3));
+
+
         
         sqlss.commit();
         
