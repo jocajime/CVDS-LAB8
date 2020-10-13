@@ -10,7 +10,37 @@
 		<result property='fechainiciorenta' column='fechainiciorenta'/>
 		<result property='fechafinrenta' column='fechafinrenta'/>
 		<association property="item" javaType="Item" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper.ItemResult" columnPrefix="ir_" ></association>
+		<association property="Cliente" javaType="Cliente" resultMap="edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper.ClienteResult" columnPrefix="c_" ></association>
 	</resultMap>
 
+	<select id="consultarItemRentado" parameterType="map" resultMap="ItemRentadoResult">
+		select
+		c.documento as c_documento,
+		i.id as i_id,
+		ir.id as id ,
+		ir.fechainiciorenta as fechainiciorenta ,
+		ir.fechafinrenta as fechainiciorenta
+		FROM VI_ITEMRENTADO as ir
+		inner join VI_CLIENTES as c on c.documento = CLIENTES_DOCUMENTO
+		inner join VI_ITEMS as i on ITEMS_id = i.id
+		WHERE ir.id = #{id};
+	</select>
+
+	<select id="consultarItemsRentados" parameterType="map" resultMap="ItemRentadoResult">
+		select
+		c.documento as c_documento,
+		i.id as i_id,
+		ir.id as id ,
+		ir.fechainiciorenta as fechainiciorenta ,
+		ir.fechafinrenta as fechainiciorenta
+		FROM VI_ITEMRENTADO as ir
+		inner join VI_CLIENTES as c on c.documento = CLIENTES_DOCUMENTO
+		inner join VI_ITEMS as i on ITEMS_id = i.id;
+	</select>
+
+	<insert parameterType="map" id="insertarItemRentado">
+		INSERT into VI_ITEMRENTADO (id,CLIENTES_documento,ITEMS_id,fechainiciorenta,fechafinrenta)
+		values (#{id},#{cliente},#{items},#{fechainicio},#{fechafin});
+	</insert>
 
 </mapper>

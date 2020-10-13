@@ -16,6 +16,15 @@ public class MyBatisClienteDAO implements ClienteDAO{
     private ClienteMapper clienteMapper;
 
     @Override
+    public void save(int documento, String nombre,String telefono, String direccion,String email, int vetado) throws PersistenceException {
+        try{
+            clienteMapper.insertarCliente(documento,nombre,telefono,direccion,email,vetado);
+        } catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al insertar el CLiente ",e);
+        }
+    }
+
+    @Override
     public Cliente load(int id) throws PersistenceException {
         try{
             return clienteMapper.consultarCliente(id);

@@ -7,5 +7,18 @@
 	<resultMap type='TipoItem' id='TipoItemResult'>
 		<id property='id' column='id'/>
 		<result property='descripcion' column='descripcion'/>  
-	</resultMap>                  
+	</resultMap>
+
+	<select parameterType="map" id="consultarTipoItem" resultMap="TipoItemMapper">
+		SELECT
+		ti.id as id,
+		ti.descripcion as descripcion
+		FROM VI_TIPOITEM as ti;
+	</select>
+
+	<insert parameterType="map" id="insertarTipoItem">
+		INSERT into VI_ITEMRENTADO (id,descripcion)
+		values (#{id},#{descripcion});
+	</insert>
+
 </mapper>

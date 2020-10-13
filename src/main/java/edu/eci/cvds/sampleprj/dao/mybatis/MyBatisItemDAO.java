@@ -10,7 +10,7 @@ import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemMapper;
 import edu.eci.cvds.samples.entities.TipoItem;
 import java.sql.SQLException;
 
-public class MyBATISItemDAO implements ItemDAO{
+public class MyBatisItemDAO implements ItemDAO{
 
     @Inject
     private ItemMapper itemMapper;
