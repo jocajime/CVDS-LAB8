@@ -8,3 +8,4 @@
 
 **Heroku APP:**  [![Heroku](https://heroku-badge.herokuapp.com/?app=heroku-badge&style=flat)](https://registroclientes-jj.herokuapp.com/)
 
+**Codacy:** [![Codacy Badge](https://app.codacy.com/project/badge/Grade/ee21eeb766784ea08adfb6420d2fd966)](https://app.codacy.com/gh/jocajime/CVDS-LAB8/dashboard?branch=master)
