@@ -10,6 +10,8 @@ import edu.eci.cvds.samples.entities.ItemRentado;
 import edu.eci.cvds.samples.entities.TipoItem;
 import edu.eci.cvds.samples.services.ExcepcionServiciosAlquiler;
 import edu.eci.cvds.samples.services.ServiciosAlquiler;
+import org.mybatis.guice.transactional.Transactional;
+
 import java.sql.Date;
 import java.util.List;
 
@@ -27,6 +29,8 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
     @Inject
     private ItemRentadoDAO itemRentadoDAO;
+
+
 
     //Cliente
     @Override
@@ -48,12 +52,23 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
     }
 
+    @Transactional
     @Override
     public void registrarCliente(Cliente c) throws ExcepcionServiciosAlquiler {
         try{
             clienteDAO.insertearCliente((int) c.getDocumento(),c.getNombre(),c.getTelefono(),c.getDireccion(),c.getEmail(),c.getVetado());
         } catch (PersistenceException e) {
             throw new ExcepcionServiciosAlquiler("Error al consultar clientes ",e);
+        }
+    }
+
+    @Transactional
+    @Override
+    public void eliminarCliente(int docu) throws ExcepcionServiciosAlquiler {
+        try{
+            clienteDAO.eliminarCliente(docu);
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosAlquiler("Error al eliminar cliente "+docu,e);
         }
     }
 
@@ -76,12 +91,23 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
         }
     }
 
+    @Transactional
     @Override
     public void registrarItem(Item i) throws ExcepcionServiciosAlquiler {
         try {
             itemDAO.insertarItem(i.getId(),i.getNombre(),i.getDescripcion(),i.getFechaLanzamiento(),(int) i.getTarifaxDia(),i.getFormatoRenta(),i.getGenero(),i.getTipo().getID());
         } catch (PersistenceException ex) {
             throw new ExcepcionServiciosAlquiler("Error al insertar item ",ex);
+        }
+    }
+
+    @Transactional
+    @Override
+    public void eliminarItem(int id) throws ExcepcionServiciosAlquiler {
+        try{
+            itemDAO.eliminarItem(id);
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosAlquiler("Error al eliminar item "+id,e);
         }
     }
 
@@ -96,6 +122,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
         }
     }
 
+    @Transactional
     @Override
     public void registrarTiposItem(TipoItem ti) throws ExcepcionServiciosAlquiler {
         try{
@@ -111,6 +138,16 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
             return tipoItemDAO.consultarTipoItem(id);
         } catch (PersistenceException e) {
             throw new ExcepcionServiciosAlquiler("Error al consultar tipo item "+id,e);
+        }
+    }
+
+    @Transactional
+    @Override
+    public void eliminarTipoItem(int id) throws ExcepcionServiciosAlquiler {
+        try{
+            tipoItemDAO.eliminarTipoItem(id);
+        } catch (PersistenceException e) {
+            throw new ExcepcionServiciosAlquiler("Error al eliminar Tipo Item "+id,e);
         }
     }
 
@@ -136,6 +173,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Transactional
     @Override
     public void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler {
         throw new UnsupportedOperationException("Not supported yet.");
@@ -146,6 +184,7 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
+    @Transactional
     @Override
     public void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServiciosAlquiler {
         throw new UnsupportedOperationException("Not supported yet.");

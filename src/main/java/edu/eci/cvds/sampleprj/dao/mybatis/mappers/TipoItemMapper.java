@@ -13,4 +13,7 @@ public interface TipoItemMapper {
     public TipoItem consultarTipoItem(@Param("id") int id);
 
     public List<TipoItem> consultarTiposItem();
+
+    public void eliminarTipoItem(@Param("id") int id);
+
 }

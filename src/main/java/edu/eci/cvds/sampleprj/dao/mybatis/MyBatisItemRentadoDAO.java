@@ -3,6 +3,7 @@ package edu.eci.cvds.sampleprj.dao.mybatis;
 import com.google.inject.Inject;
 import edu.eci.cvds.sampleprj.dao.ItemRentadoDAO;
 import edu.eci.cvds.sampleprj.dao.PersistenceException;
+import edu.eci.cvds.samples.entities.Item;
 import edu.eci.cvds.samples.entities.ItemRentado;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ItemRentadoMapper;
 
@@ -46,6 +47,17 @@ public class MyBatisItemRentadoDAO implements ItemRentadoDAO {
             return itemRentadoMapper.consultarItemsRentadosCliente(idcliente);
         }catch(org.apache.ibatis.exceptions.PersistenceException e){
             throw new PersistenceException("Error al consultar el items del cliente "+idcliente,e);
+        }
+    }
+
+
+    @Override
+    public void eliminarItemRentado(int id) throws PersistenceException {
+        try{
+            itemRentadoMapper.eliminarItemRentado(id);
+        }
+        catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al eliminar Item Rentado "+id,e);
         }
     }
 }

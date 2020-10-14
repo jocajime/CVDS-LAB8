@@ -58,6 +58,14 @@
 	<insert parameterType="map" id="agregarItemRentadoACliente">
 		insert into VI_ITEMRENTADO(CLIENTES_documento,ITEMS_id,fechainiciorenta, fechafinrenta) values (#{idcliente},#{iditem},#{fechainicio},#{fechafin});
 	</insert>
+	<insert parameterType="map" id="insertarCliente">
+		INSERT into VI_CLIENTES values (#{documento},#{nombre},#{telefono},#{direccion},#{email},#{vetado});
+	</insert>
+	<delete parameterType="map" id="eliminarCliente">
+		DELETE FROM VI_CLIENTES WHERE documento= #{documento} ;
+	</delete>
+
+
 	<resultMap type='Cliente' id='ClienteResult'>
 		<id property='documento' column='documento'/>
 		<result property='nombre' column='nombre'/>

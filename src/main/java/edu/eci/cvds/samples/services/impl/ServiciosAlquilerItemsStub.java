@@ -68,6 +68,10 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
     }
 
     @Override
+    public void eliminarCliente(int docu) throws ExcepcionServiciosAlquiler {
+    }
+
+    @Override
     public void vetarCliente(long docu, boolean estado) throws ExcepcionServiciosAlquiler {
         if(clientes.containsKey(docu)){
             Cliente c=clientes.get(docu);
@@ -103,6 +107,11 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
     }
 
     @Override
+    public void eliminarItem(int id) throws ExcepcionServiciosAlquiler {
+
+    }
+
+    @Override
     public void actualizarTarifaItem(int id, long tarifa) throws ExcepcionServiciosAlquiler {
         if (!itemsDisponibles.containsKey(id)) {
             Item c = itemsDisponibles.get(id);
@@ -120,6 +129,11 @@ public class ServiciosAlquilerItemsStub implements ServiciosAlquiler {
             i=tipositems.get(id);
         }
         return i;
+
+    }
+
+    @Override
+    public void eliminarTipoItem(int id) throws ExcepcionServiciosAlquiler {
 
     }
 

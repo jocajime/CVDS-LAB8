@@ -42,4 +42,13 @@ public class MyBatisClienteDAO implements ClienteDAO{
         }
     }
 
+    @Override
+    public void eliminarCliente(int documento) throws PersistenceException {
+        try{
+            clienteMapper.eliminarCliente(documento);
+        }catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al eliminar cliente "+documento,e);
+        }
+    }
+
 }

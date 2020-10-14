@@ -11,4 +11,6 @@ public interface ClienteDAO {
     public Cliente consultarCliente(int id) throws PersistenceException;
 
     public  List<Cliente> consultarClientes() throws PersistenceException;
+
+    public void eliminarCliente(int documento) throws PersistenceException;
 }

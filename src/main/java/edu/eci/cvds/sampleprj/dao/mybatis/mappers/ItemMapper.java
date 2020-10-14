@@ -27,5 +27,7 @@ public interface ItemMapper {
                              @Param("formatorenta") String formatorenta,
                              @Param("genero") String genero,
                              @Param("tipoitem") int tipoitem);
+    public void eliminarItem(@Param("id")int id);
+
 
 }

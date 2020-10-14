@@ -16,4 +16,6 @@ public interface ItemDAO {
 
     public List<Item> consultarItemsDisponibles() throws PersistenceException;
 
+    public void eliminarItem(int id) throws PersistenceException;
+
 }

@@ -56,4 +56,8 @@
 		values (#{id},#{cliente},#{items},#{fechainicio},#{fechafin});
 	</insert>
 
+	<delete parameterType="map" id="eliminarItemRentado">
+		DELETE FROM VI_ITEMRENTADO WHERE id= #{id};
+	</delete>
+
 </mapper>

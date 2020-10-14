@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Date;
 import java.sql.SQLException;
+
+import edu.eci.cvds.samples.services.ServiciosAlquiler;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -64,6 +66,8 @@ public class MyBatisExample {
 
         SqlSession sqlss = sessionfact.openSession();
 
+
+
         //ItemMapper
         ItemMapper it = sqlss.getMapper(ItemMapper.class);
         //CONSULTAR ITEM POR SU ID
@@ -72,6 +76,8 @@ public class MyBatisExample {
         //CONSULTAR TODOS LOS ITEMS
         System.out.println("*******consultarItems**********");
         System.out.println(it.consultarItems());
+
+
 
         // ClienteMapper
         ClienteMapper cm=sqlss.getMapper(ClienteMapper.class);
@@ -85,8 +91,8 @@ public class MyBatisExample {
         System.out.println("*agregarItemRentadoACliente***");
         //cm.agregarItemRentadoACliente(703, 5, new Date(2020,9,30), new Date(2020,10,3));
 
-
-        
+        //cm.insertarCliente(-5555555,"asd","asdf","asdf","asdfg",false);
+        //cm.eliminarCliente(-5555555);
         sqlss.commit();
         
         

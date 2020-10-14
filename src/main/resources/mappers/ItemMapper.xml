@@ -49,6 +49,11 @@
 		insert into VI_ITEMS (id,nombre,descripcion,fechalanzamiento,tarifaxdia,formatorenta,genero,TIPOITEM_id) values (#{item.id},#{item.nombre},#{item.descripcion},#{item.fechaLanzamiento},#{item.tarifaxDia},#{item.formatoRenta},
         #{item.genero},#{item.tipo.id});
 	</insert>
+
+    <delete parameterType="map" id="eliminarItem">
+        DELETE FROM VI_ITEMS WHERE id = #{id};
+    </delete>
+
     <resultMap type='Item' id='ItemResult'>
         <id property='id' column='id'/>
         <result property='nombre' column='nombre'/>

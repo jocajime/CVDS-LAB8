@@ -15,4 +15,6 @@ public interface ItemRentadoDAO {
     public List<ItemRentado> loadItems(int id) throws PersistenceException;
 
     public List<ItemRentado> loadItemsCliente(int idcliente) throws PersistenceException;
+
+    public void eliminarItemRentado(int id) throws PersistenceException;
 }

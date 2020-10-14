@@ -59,4 +59,17 @@ public class MyBatisItemDAO implements ItemDAO{
 
     }
 
+
+    @Override
+    public void eliminarItem(int id) throws PersistenceException {
+        try{
+            itemMapper.eliminarItem(id);
+        }
+        catch(org.apache.ibatis.exceptions.PersistenceException e){
+            throw new PersistenceException("Error al eliminar item "+id,e);
+        }
+
+
+    }
+
 }

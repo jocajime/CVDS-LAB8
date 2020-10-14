@@ -29,4 +29,8 @@
 		values (#{id},#{descripcion});
 	</insert>
 
+	<delete parameterType="map" id="eliminarTipoItem">
+		DELETE FROM VI_TIPOITEM WHERE id= #{id};
+	</delete>
+
 </mapper>

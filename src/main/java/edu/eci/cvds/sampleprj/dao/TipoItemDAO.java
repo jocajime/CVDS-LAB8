@@ -13,4 +13,6 @@ public interface TipoItemDAO {
     public List<TipoItem> consultarTiposItem() throws PersistenceException;
 
     public TipoItem consultarTipoItem(int id) throws PersistenceException;
+
+    public void eliminarTipoItem(int id) throws PersistenceException;
 }

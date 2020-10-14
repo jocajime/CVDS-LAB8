@@ -33,10 +33,12 @@ public interface ClienteMapper {
      */
     public List<Cliente> consultarClientes();
 
-    void insertarCliente(@Param("documento") int documento,
+    public void insertarCliente(@Param("documento") int documento,
                          @Param("nombre") String nombre,
                          @Param("telefono") String telefono,
                          @Param("direccion") String direccion,
                          @Param("email") String email,
                          @Param("vetado") boolean vetado);
+
+    public void eliminarCliente(@Param("documento") int documento);
 }

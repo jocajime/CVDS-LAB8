@@ -16,6 +16,8 @@ public interface ServiciosAlquiler {
 
     public abstract void registrarCliente(Cliente p) throws ExcepcionServiciosAlquiler;
 
+    public abstract void eliminarCliente(int docu) throws ExcepcionServiciosAlquiler;
+
     //Item
     /**
      * @obj consultar los items que estan disponibles para alquiler
@@ -27,7 +29,7 @@ public interface ServiciosAlquiler {
 
     public abstract void registrarItem(Item i) throws ExcepcionServiciosAlquiler;
 
-
+    public abstract void eliminarItem(int id) throws ExcepcionServiciosAlquiler;
 
 
     //TipoItem
@@ -36,6 +38,9 @@ public interface ServiciosAlquiler {
     public abstract void registrarTiposItem(TipoItem ti) throws ExcepcionServiciosAlquiler;
 
     public TipoItem consultarTipoItem(int id) throws ExcepcionServiciosAlquiler;
+
+    public abstract void eliminarTipoItem(int id) throws ExcepcionServiciosAlquiler;
+
     //ItemRentado
     /**
      * @obj Consultar los items que tenga en su poder un cliente
