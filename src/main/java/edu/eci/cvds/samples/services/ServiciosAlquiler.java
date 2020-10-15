@@ -80,6 +80,7 @@ public interface ServiciosAlquiler {
     public abstract void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler;
 
 
+    void registrarAlquilerCliente(Date date, int docu, Item item, int numdias) throws ExcepcionServiciosAlquiler;
 
     /**
      * @obj consultar el costo del alquiler de un item

@@ -22,7 +22,7 @@ public interface ClienteMapper {
      * @param fechainicio
      * @param fechafin 
      */
-    public void agregarItemRentadoACliente(@Param("idcliente") int id,
+    public void agregarItemRentadoACliente(@Param("idcliente") long id,
                                            @Param("iditem") int idit,
                                            @Param("fechainicio") Date fechainicio,
                                            @Param("fechafin") Date fechafin);
@@ -41,4 +41,8 @@ public interface ClienteMapper {
                          @Param("vetado") boolean vetado);
 
     public void eliminarCliente(@Param("documento") int documento);
+
+
+
+
 }

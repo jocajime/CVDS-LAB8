@@ -13,6 +13,7 @@ import edu.eci.cvds.samples.services.ServiciosAlquiler;
 import org.mybatis.guice.transactional.Transactional;
 
 import java.sql.Date;
+import java.util.Calendar;
 import java.util.List;
 
 @Singleton
@@ -173,15 +174,33 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
         throw new UnsupportedOperationException("Not supported yet.");
     }
 
-    @Transactional
     @Override
     public void registrarAlquilerCliente(Date date, long docu, Item item, int numdias) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+
     }
 
     @Override
+    public void registrarAlquilerCliente(Date date, int docu, Item item, int numdias) throws ExcepcionServiciosAlquiler {
+        try{
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(date);
+            calendar.add(Calendar.DAY_OF_YEAR, numdias);
+            clienteDAO.guardarItemRentadoCliente(docu,item.getId(),date,new java.sql.Date(calendar.getTime().getTime()));
+        }  catch (PersistenceException ex) {
+            throw new ExcepcionServiciosAlquiler("Error al agregar item con id: " + docu, ex);
+        }
+    }
+
+
+
+    @Override
     public long consultarCostoAlquiler(int iditem, int numdias) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try{
+            return numdias * itemDAO.consultarItem(iditem).getTarifaxDia();
+        } catch (Exception e) {
+            throw new UnsupportedOperationException("Error al consultar costo alquiler del item con id: "+iditem);
+        }
+
     }
 
     @Transactional

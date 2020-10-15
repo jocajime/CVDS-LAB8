@@ -6,6 +6,7 @@ import edu.eci.cvds.sampleprj.dao.PersistenceException;
 import edu.eci.cvds.sampleprj.dao.mybatis.mappers.ClienteMapper;
 import edu.eci.cvds.samples.entities.Cliente;
 
+import java.util.Date;
 import java.util.List;
 
 public class MyBatisClienteDAO implements ClienteDAO{
@@ -43,6 +44,19 @@ public class MyBatisClienteDAO implements ClienteDAO{
     }
 
     @Override
+    public void guardarItemRentadoCliente(int idcli, int idit, Date fechainicio, Date fechafin) throws PersistenceException {
+        try {
+            clienteMapper.agregarItemRentadoACliente( idcli, idit, fechainicio, fechafin);
+        } catch (org.apache.ibatis.exceptions.PersistenceException e) {
+            throw new PersistenceException("Error al añadir el nuevo cliente", e);
+        }
+    }
+
+
+
+
+
+    @Override
     public void eliminarCliente(int documento) throws PersistenceException {
         try{
             clienteMapper.eliminarCliente(documento);
@@ -50,5 +64,7 @@ public class MyBatisClienteDAO implements ClienteDAO{
             throw new PersistenceException("Error al eliminar cliente "+documento,e);
         }
     }
+
+
 
 }

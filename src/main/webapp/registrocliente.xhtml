@@ -30,6 +30,9 @@
                 <p:column headerText="VETADO">
                     <h:outputText value="#{cliente.getVetado()}"/>
                 </p:column>
+                <f:facet name="footer">
+                    <h:commandButton id="Clientes"  value="Consultar" action="registroAlquiler?faces-redirect = true" class="btn btn-primary"/>
+                </f:facet>
             </p:dataTable>
         </h:form>
     </div>
@@ -37,19 +40,19 @@
         <p:panelGrid  columns="2">
             <f:facet name="header">REGISTRAR CLIENTE</f:facet>
             <h:form id="cliente_form">
-                <p:outputLabel for="Documento" value="Ingrese Documento: " />
+                <p:outputLabel for="@next" value="Ingrese Documento: " />
                 <p:inputText id="Documento" type="long" binding="#{documento}" /><br/><br/>
 
-                <p:outputLabel for="Nombre" value="Ingrese Nombre: "/>
+                <p:outputLabel for="@next" value="Ingrese Nombre: "/>
                 <p:inputText id="Nombre" type="String" binding="#{nombre}"/><br/><br/>
 
-                <p:outputLabel for="Direccion" value="Ingrese Direccion: "/>
+                <p:outputLabel for="@next" value="Ingrese Direccion: "/>
                 <p:inputText id="Direccion" type="String" binding="#{direccion}"/><br/><br/>
 
-                <p:outputLabel for="Telefono" value="Ingrese Telefono: " />
+                <p:outputLabel for="@next" value="Ingrese Telefono: " />
                 <p:inputText id="Telefono" type="String" binding="#{telefono}"/><br/><br/>
 
-                <p:outputLabel for="Email" value="Ingrese Email: " />
+                <p:outputLabel for="@next" value="Ingrese Email: " />
                 <p:inputText id="Email" type="String" binding="#{email}"/><br/><br/>
 
                 <p:commandButton update="cliente_dt_form" class="Button" actionListener="#{AlquilerItemsBean.registrarCliente(nombre.value,documento.value,telefono.value,direccion.value,email.value)}" value="Registrar Nuevo Cliente"/>
