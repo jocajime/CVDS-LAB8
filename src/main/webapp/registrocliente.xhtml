@@ -5,12 +5,13 @@
       xmlns:p="http://primefaces.org/ui">
 <h:head>
     <title>Registro Cliente</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"/>
 </h:head>
 <h:body>
     <div class="container">
         <h:form id="cliente_dt_form">
-            <p:dataTable id="cliente_table"  var="cliente" value="#{AlquilerItemsBean.consultarClientes()}" paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                         rows="15" selectionMode="single" rowKey="#{cliente.getDocumento()}">
+            <p:dataTable id="documento"  var="cliente" value="#{AlquilerItemsBean.consultarClientes()}" paginator="true" paginatorTemplate="{FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
+                         rows="15" selectionMode="single"   selection="#{AlquilerItemsBean.cliente}" rowKey="#{cliente.getDocumento()}">
                 <f:facet name="header">CLIENTES REGISTRADOS</f:facet>
                 <p:column headerText="DOCUMENTO">
                     <h:outputText value="#{cliente.getDocumento()}"/>
