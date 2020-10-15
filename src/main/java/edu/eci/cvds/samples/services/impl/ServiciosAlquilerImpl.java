@@ -13,6 +13,8 @@ import edu.eci.cvds.samples.services.ServiciosAlquiler;
 import org.mybatis.guice.transactional.Transactional;
 
 import java.sql.Date;
+import java.time.temporal.ChronoUnit;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -165,13 +167,36 @@ public class ServiciosAlquilerImpl implements ServiciosAlquiler {
 
     @Override
     public int valorMultaRetrasoxDia(int itemId) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            return (int) itemDAO.consultarItem(itemId).getTarifaxDia();
+        } catch (Exception e) {
+            throw new UnsupportedOperationException("Erro al consultar multa con retraso");
+        }
     }
 
 
     @Override
     public long consultarMultaAlquiler(int iditem, Date fechaDevolucion) throws ExcepcionServiciosAlquiler {
-        throw new UnsupportedOperationException("Not supported yet.");
+        try {
+            List<Cliente> clientes = consultarClientes();
+            for (int i=0 ; i<clientes.size() ; i++) {
+                ArrayList<ItemRentado> rentados = clientes.get(i).getRentados();
+                for (int j=0 ; j<rentados.size() ; j++) {
+                    if(rentados.get(j).getItem()!=null){
+                        if (rentados.get(j).getItem().getId() == iditem) {
+                            long diasRetraso = ChronoUnit.DAYS.between(rentados.get(j).getFechafinrenta().toLocalDate(), fechaDevolucion.toLocalDate());
+                            if (diasRetraso < 0) {
+                                return 0;
+                            }
+                            return diasRetraso * valorMultaRetrasoxDia(rentados.get(j).getId());
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            throw  new ExcepcionServiciosAlquiler("Error al consultar multa de item con id: "+iditem);
+        }
+        return iditem;
     }
 
 
