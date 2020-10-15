@@ -44,7 +44,7 @@ public class MyBatisClienteDAO implements ClienteDAO{
     }
 
     @Override
-    public void guardarItemRentadoCliente(int idcli, int idit, Date fechainicio, Date fechafin) throws PersistenceException {
+    public void guardarItemRentadoCliente(long idcli, int idit, Date fechainicio, Date fechafin) throws PersistenceException {
         try {
             clienteMapper.agregarItemRentadoACliente( idcli, idit, fechainicio, fechafin);
         } catch (org.apache.ibatis.exceptions.PersistenceException e) {

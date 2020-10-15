@@ -12,7 +12,7 @@
         <h:form id="cliente_al_form">
             <p:dataTable id="alquilerDT" var="alquiler" value="#{AlquilerItemsBean.getCliente().rentados}"
                          rows="10" paginator="true" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-                         currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records" rowsPerPageTemplate="5" tableStyleClass="table table-striped table-bordered p-3 mb-2 bg-primary text-white">
+                         rowsPerPageTemplate="5" >
                 <f:facet name="header">Registros de Alquiler</f:facet>
                 <p:column headerText="Id">
                     <h:outputText value="#{alquiler.item.id}"/>
@@ -41,18 +41,18 @@
                     Registrar Item
                 </f:facet>
 
-                    <p:outputLabel value="Ingrese Id Item" />
+                    <p:outputLabel for='@next' value="Ingrese Id Item" />
                     <p:inputText  id= "item" type="String" binding="#{id}"/>
 
 
-                    <p:outputLabel value="Ingrese el numero de días a alquilar" />
+                    <p:outputLabel for='@next'  value="Ingrese el numero de días a alquilar" />
                     <p:inputText  id= "numdias" type="String" binding="#{dias}" />
 
                     <p:outputLabel value="Costo del alquiler"/>
                     <h:outputText value="#{AlquilerItemsBean.getCosto()}"/>
 
-                <p:commandButton update="cliente_al_form" value="Registrar" action="registrocliente?faces-redirect = true" actionListener="#{AlquilerItemsBean.registrarAlquiler(id.value,dias.value)}" class="btn btn-primary" style="margin-top: 10%;">
-                <p:commandButton update="cliente_al_form" value="Consultar Costo" actionListener="#{AlquilerItemsBean.consultarCosto(id.value,dias.value)}" class="btn btn-primary" style="margin-top: 10%;"/>
+                <p:commandButton update="cliente_al_form" value="Registrar"  class="Button" actionListener="#{AlquilerItemsBean.registrarAlquiler(id.value,dias.value)}"  action="registrocliente?faces-redirect = true"  style="margin-top: 10%;">
+                <p:commandButton update="cliente_al_form" value="Consultar Costo" actionListener="#{AlquilerItemsBean.consultarCosto(id.value,dias.value)}" class="Button" style="margin-top: 10%;"/>
 
                 </p:commandButton>
             </h:panelGrid>

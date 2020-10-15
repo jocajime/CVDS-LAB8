@@ -13,7 +13,7 @@ public interface ClienteDAO {
 
     public  List<Cliente> consultarClientes() throws PersistenceException;
 
-    void guardarItemRentadoCliente(int idcli, int idit, Date fechainicio, Date fechafin) throws PersistenceException;
+    void guardarItemRentadoCliente(long idcli, int idit, Date fechainicio, Date fechafin) throws PersistenceException;
 
     public void eliminarCliente(int documento) throws PersistenceException;
 
