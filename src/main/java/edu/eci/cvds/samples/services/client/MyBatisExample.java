@@ -25,6 +25,7 @@ import java.sql.Date;
 import java.sql.SQLException;
 
 import edu.eci.cvds.samples.services.ServiciosAlquiler;
+import edu.eci.cvds.view.AlquilerItemsBean;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -35,6 +36,8 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
  * @author hcadavid
  */
 public class MyBatisExample {
+
+    private AlquilerItemsBean alquilerItemsBean;
 
     /**
      * Método que construye una fábrica de sesiones de MyBatis a partir del
@@ -76,6 +79,8 @@ public class MyBatisExample {
         //CONSULTAR TODOS LOS ITEMS
         System.out.println("*******consultarItems**********");
         System.out.println(it.consultarItems());
+
+        //System.out.println(alquilerItemsBean.getCliente().getRentados());
 
 
 
